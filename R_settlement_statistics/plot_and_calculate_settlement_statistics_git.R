@@ -3,13 +3,11 @@
 setwd("~/Documents/R/Microbial_inducers") 
 
 library(tidyverse)
-#library(viridis)
 library(effects)
 library(lme4)
 library(emmeans)
 library(multcomp)
 library(ggpubr)
-#library(scales)
 
 
 ## load and format data ----
@@ -82,7 +80,7 @@ qqline(ran)
 # check overdispersion
 sum(resid(df.glmer$psin, type = "pearson")^2) / (nrow(df.l$psin) - length(coef(df.glmer$psin))) 
 library(RVAideMemoire) #GLMM overdispersion test
-overdisp.glmer(md1) #Overdispersion for GLMM
+overdisp.glmer(md1)
 
 
 ## explore model results
@@ -91,11 +89,6 @@ lapply(df.glmer, summary)
 for(i in seq_along(df.glmer)) {
   print(names(df.glmer)[i])
   print(exp(fixef(df.glmer[[i]])))
-}
-
-for(i in seq_along(df.glmer2)) {
-  print(names(df.glmer2)[i])
-  print(exp(fixef(df.glmer2[[i]])))
 }
 
 ## save fixed effects table
@@ -125,7 +118,7 @@ for(i in seq_along(fixef_table)) {
 plot_mean <- function(df, model) {
   # first extract mean and SE
   newdata <- data.frame(Treatment = levels(df$Treatment))  #creates a df with every treatment combination to predict
-  Xmat <- model.matrix(~Treatment, data = newdata) # build model matrix. Dummy codes each combination
+  Xmat <- model.matrix(~Treatment, data = newdata) # build model matrix
   coefs <- fixef(model)
   fit <- as.vector(coefs %*% t(Xmat))
   se <- sqrt(diag(Xmat %*% vcov(model) %*% t(Xmat)))
