@@ -27,8 +27,12 @@ df.l <- list(
   "psin" = df$oct_p_sinensis
 )
 
+# chem
+df_chem$a_ten <- NULL
+
 # check dataframes
 lapply(df.l, head)
+lapply(df_chem, head)
 
 # rename cols to keep consistent
 for(i in seq_along(df.l)) {
