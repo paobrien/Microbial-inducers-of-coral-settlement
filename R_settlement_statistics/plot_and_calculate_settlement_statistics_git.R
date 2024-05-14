@@ -13,8 +13,8 @@ library(ggpubr)
 ## load and format data ----
 
 # Settlement dataframes
-df <- readRDS("Data/Settlement_data/R_files/settlement_data_df_list") # biofilm assays
-df_chem <- readRDS("Data/Settlement_data/R_files/settlement_data_chem_lists") # chem assays
+df <- readRDS("Data/Settlement_data/R_files/settlement_data_df_list.rds") # biofilm assays
+df_chem <- readRDS("Data/Settlement_data/R_files/settlement_data_chem_lists.rds") # chem assays
 
 # subset to relevant df
 
